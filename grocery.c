@@ -15,7 +15,7 @@ struct produto {
     int qnt;
 }
 
-void estoque_adicionar (struct produto estoque[], int *qnt_estoque) 
+void estoque_adicionar (struct produto estoque[], int *qnt_estoque)
 // Um array 'estoque[]' que armazena os produtos da struct
 // Um ponteiro que '*qnt_estoque' modifica a variável diretamente na função   
 {
@@ -217,8 +217,9 @@ int main ()
     int qnt_carrinho = 0;
 
     // Opções  
-    int options;
-    printf("Opcoes:\n"
+    int options, codigo, quantidade;
+    do {
+        printf("Opcoes:\n"
        "1 - Adicionar ao carrinho\n"
        "2 - Remover do carrinho\n"
        "3 - Adicionar ao estoque\n"
@@ -227,23 +228,39 @@ int main ()
        "6 - Verificar carrinho\n"
        "7 - Comprar\n"
        "8 - Sair\n");
+       printf("Escolha uma das opcoes:\n");
+       scanf("%d", &options);
 
+    
     switch (options) {
         case 1:
+            printf("Digite o codigo do produto:\n");
+            scanf("%d", &codigo);
+            printf("Digite a quantidade:\n");
+            scanf("%d", &quantidade);
 
-        break;
+            carrinho_adicionar(estoque, qnt_produtos, carrinho, *qnt_carrinho, codigo, quantidade);
+            break;
         case 2:
-        break;
+            printf("Digite o codigo do produto:\n");
+            scanf("%d", &codigo);
+            carrinho_remover(codigo, qnt_carrinho);
+            break;
         case 3:
-        break; 
+            estoque_adicionar(estoque, qnt_produtos);
+            break; 
         case 4:
-        break; 
+            estoque_remover(estoque, qnt_produtos)
+            break; 
         case 5:
-        break;
+            estoque_verificar(estoque, qnt_produtos);
+            break;
         case 6:
-        break;
+            carrinho_verificar(carrinho, qnt_carrinho);
+            break;
         case 7:
-        break;
+            carrinho_comprar(carrinho, qnt_carrinho);
+            break;
         case 8:
             printf("O programa sera fechado!");
             printf("Saindo ...");
@@ -252,5 +269,7 @@ int main ()
             printf("Opcao invalida!");
         break;
     }
+} while (options != 8);
 
+return 0;
 }
